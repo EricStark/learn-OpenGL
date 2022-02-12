@@ -32,6 +32,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="res\shader\basic.shader" />
+    <None Include="res\shader\light.shader" />
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\textures\container.jpg">

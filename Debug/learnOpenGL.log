@@ -1,10 +1,12 @@
 ﻿  Application.cpp
-E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(240): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
-E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(326): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(220): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(245): warning C4305: “参数”: 从“double”到“GLfloat”截断
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(246): warning C4305: “参数”: 从“double”到“GLfloat”截断
 E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(327): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
-E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(331): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(328): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
 E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(332): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
-E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(334): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(333): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
 E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(335): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
-E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(342): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(336): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(343): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
   learnOpenGL.vcxproj -> E:\CPPProject\learnOpenGL\learnOpenGL\Debug\learnOpenGL.exe
