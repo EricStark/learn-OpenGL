@@ -1,12 +1,21 @@
 ﻿  Application.cpp
-E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(220): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
-E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(245): warning C4305: “参数”: 从“double”到“GLfloat”截断
-E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(246): warning C4305: “参数”: 从“double”到“GLfloat”截断
-E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(327): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
-E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(328): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
-E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(332): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
-E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(333): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
-E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(335): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
-E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(336): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
-E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(343): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(227): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(255): warning C4305: “参数”: 从“double”到“GLfloat”截断
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(256): warning C4305: “参数”: 从“double”到“GLfloat”截断
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(263): warning C4305: “参数”: 从“double”到“GLfloat”截断
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(264): warning C4305: “参数”: 从“double”到“GLfloat”截断
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(271): warning C4305: “参数”: 从“double”到“GLfloat”截断
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(272): warning C4305: “参数”: 从“double”到“GLfloat”截断
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(279): warning C4305: “参数”: 从“double”到“GLfloat”截断
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(280): warning C4305: “参数”: 从“double”到“GLfloat”截断
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(375): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(376): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(380): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(381): warning C4244: “初始化”: 从“double”转换到“GLfloat”，可能丢失数据
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(383): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(384): warning C4244: “=”: 从“double”转换到“GLfloat”，可能丢失数据
+E:\CPPProject\learnOpenGL\learnOpenGL\src\Application.cpp(391): warning C4244: “参数”: 从“double”转换到“GLfloat”，可能丢失数据
+LINK : warning LNK4098: 默认库“LIBCMT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+LINK : warning LNK4098: 默认库“MSVCRT”与其他库的使用冲突；请使用 /NODEFAULTLIB:library
+glew32s.lib(glew.obj) : warning LNK4099: 未找到 PDB“vc120.pdb”(使用“glew32s.lib(glew.obj)”或在“E:\CPPProject\learnOpenGL\learnOpenGL\Debug\vc120.pdb”中寻找)；正在链接对象，如同没有调试信息一样
   learnOpenGL.vcxproj -> E:\CPPProject\learnOpenGL\learnOpenGL\Debug\learnOpenGL.exe

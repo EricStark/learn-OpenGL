@@ -148,6 +148,13 @@ int main(void)
 		glm::vec3(1.5f,  0.2f, -1.5f),
 		glm::vec3(-1.3f,  1.0f, -1.5f)
 	};
+	// Positions of the point lights
+	glm::vec3 pointLightPositions[] = {
+		glm::vec3(0.7f,  0.2f,  2.0f),
+		glm::vec3(2.3f, -3.3f, -4.0f),
+		glm::vec3(-4.0f,  2.0f, -12.0f),
+		glm::vec3(0.0f,  0.0f, -3.0f)
+	};
 	// 物体
 	unsigned int vao_cube;
 	glGenVertexArrays(1, &vao_cube);
@@ -228,22 +235,60 @@ int main(void)
 		glUseProgram(shader_cube);
 		//////使用物体的着色器程序对象///////
 		/****             设置物体的材质属性                ***/
-		glUniform3f(glGetUniformLocation(shader_cube, "material.specular"), 0.5f, 0.5f, 0.5f);
+		glUniform1i(glGetUniformLocation(shader_cube, "material.diffuse"), 0);
+		glUniform1i(glGetUniformLocation(shader_cube, "material.specular"), 1);
 		glUniform1f(glGetUniformLocation(shader_cube, "material.shininess"), 64.0f);
 		/****             设置光的属性                      ***/
 		GLint viewPosLoc = glGetUniformLocation(shader_cube, "viewPos");
 		glUniform3f(viewPosLoc, camera.Position.x, camera.Position.y, camera.Position.z);
-		//glUniform3f(glGetUniformLocation(shader_cube, "light.direction"), -0.2f, -1.0f, -0.3f);//测试定向光
-		glUniform3f(glGetUniformLocation(shader_cube, "light.position"), lightPos.x, lightPos.y, lightPos.z);//测试点光源 + 聚光
-		glUniform3f(glGetUniformLocation(shader_cube, "light.direction"), camera.Front.x, camera.Front.y, camera.Front.z);//测试聚光
-		glUniform1f(glGetUniformLocation(shader_cube, "light.cutOff"), glm::cos(glm::radians(12.5f)));//切光角 测试聚光
-		glUniform1f(glGetUniformLocation(shader_cube, "light.outerCutOff"), glm::cos(glm::radians(17.5f)));
-		glUniform3f(glGetUniformLocation(shader_cube, "light.ambient"), 0.3f, 0.3f, 0.3f);
-		glUniform3f(glGetUniformLocation(shader_cube, "light.diffuse"), 0.5f, 0.5f, 0.5f);
-		glUniform3f(glGetUniformLocation(shader_cube, "light.specular"), 1.0f, 1.0f, 1.0f);
-		glUniform1f(glGetUniformLocation(shader_cube, "light.constant"), 1.0f);
-		glUniform1f(glGetUniformLocation(shader_cube, "light.linear"), 0.09);
-		glUniform1f(glGetUniformLocation(shader_cube, "light.quadratic"), 0.032);
+		// Directional light
+		glUniform3f(glGetUniformLocation(shader_cube, "dirLight.direction"), -0.2f, -1.0f, -0.3f);
+		glUniform3f(glGetUniformLocation(shader_cube, "dirLight.ambient"), 0.05f, 0.05f, 0.05f);
+		glUniform3f(glGetUniformLocation(shader_cube, "dirLight.diffuse"), 0.4f, 0.4f, 0.4f);
+		glUniform3f(glGetUniformLocation(shader_cube, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
+		// Point light 1
+		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[0].position"), pointLightPositions[0].x, pointLightPositions[0].y, pointLightPositions[0].z);
+		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[0].ambient"), 0.05f, 0.05f, 0.05f);
+		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[0].diffuse"), 0.8f, 0.8f, 0.8f);
+		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[0].specular"), 1.0f, 1.0f, 1.0f);
+		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[0].constant"), 1.0f);
+		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[0].linear"), 0.09);
+		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[0].quadratic"), 0.032);
+		// Point light 2
+		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[1].position"), pointLightPositions[1].x, pointLightPositions[1].y, pointLightPositions[1].z);
+		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[1].ambient"), 0.05f, 0.05f, 0.05f);
+		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[1].diffuse"), 0.8f, 0.8f, 0.8f);
+		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[1].specular"), 1.0f, 1.0f, 1.0f);
+		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[1].constant"), 1.0f);
+		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[1].linear"), 0.09);
+		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[1].quadratic"), 0.032);
+		// Point light 3
+		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[2].position"), pointLightPositions[2].x, pointLightPositions[2].y, pointLightPositions[2].z);
+		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[2].ambient"), 0.05f, 0.05f, 0.05f);
+		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[2].diffuse"), 0.8f, 0.8f, 0.8f);
+		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[2].specular"), 1.0f, 1.0f, 1.0f);
+		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[2].constant"), 1.0f);
+		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[2].linear"), 0.09);
+		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[2].quadratic"), 0.032);
+		// Point light 4
+		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[3].position"), pointLightPositions[3].x, pointLightPositions[3].y, pointLightPositions[3].z);
+		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[3].ambient"), 0.05f, 0.05f, 0.05f);
+		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[3].diffuse"), 0.8f, 0.8f, 0.8f);
+		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[3].specular"), 1.0f, 1.0f, 1.0f);
+		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[3].constant"), 1.0f);
+		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[3].linear"), 0.09);
+		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[3].quadratic"), 0.032);
+		// SpotLight
+		/*glUniform3f(glGetUniformLocation(shader_cube, "spotLight.position"), camera.Position.x, camera.Position.y, camera.Position.z);
+		glUniform3f(glGetUniformLocation(shader_cube, "spotLight.direction"), camera.Front.x, camera.Front.y, camera.Front.z);
+		glUniform3f(glGetUniformLocation(shader_cube, "spotLight.ambient"), 0.0f, 0.0f, 0.0f);
+		glUniform3f(glGetUniformLocation(shader_cube, "spotLight.diffuse"), 1.0f, 1.0f, 1.0f);
+		glUniform3f(glGetUniformLocation(shader_cube, "spotLight.specular"), 1.0f, 1.0f, 1.0f);
+		glUniform1f(glGetUniformLocation(shader_cube, "spotLight.constant"), 1.0f);
+		glUniform1f(glGetUniformLocation(shader_cube, "spotLight.linear"), 0.09);
+		glUniform1f(glGetUniformLocation(shader_cube, "spotLight.quadratic"), 0.032);
+		glUniform1f(glGetUniformLocation(shader_cube, "spotLight.cutOff"), glm::cos(glm::radians(12.5f)));
+		glUniform1f(glGetUniformLocation(shader_cube, "spotLight.outerCutOff"), glm::cos(glm::radians(15.0f)));*/
 		glm::mat4 view;
 		glm::mat4 projection;
 		glm::mat4 model;
@@ -282,13 +327,16 @@ int main(void)
 		projLoc = glGetUniformLocation(shader_light, "projection");
 		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-		model = glm::mat4();
-		model = glm::translate(model, lightPos);
-		model = glm::scale(model, glm::vec3(0.2f));//等比例缩放
-		glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 		// 使用灯的vao
 		glBindVertexArray(vao_light);
-		glDrawArrays(GL_TRIANGLES, 0, 36);
+		for (GLuint i = 0; i < 4; i++)
+		{
+			model = glm::mat4();
+			model = glm::translate(model, pointLightPositions[i]);
+			model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
+			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
+			glDrawArrays(GL_TRIANGLES, 0, 36);
+		}
 		glBindVertexArray(0);
 		glfwSwapBuffers(window);
 		glfwPollEvents();
