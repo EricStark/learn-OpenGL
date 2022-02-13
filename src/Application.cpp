@@ -5,6 +5,7 @@
 #include <sstream>
 #include <string>
 #include "Camera.h"
+#include "Model.h"
 #include "vendor\glm/gtc/type_ptr.hpp"
 #include "vendor\stb_image\stb_image.h"
 
@@ -91,135 +92,16 @@ int main(void)
 	// 开启深度测试
 	glEnable(GL_DEPTH_TEST);
 
-	float vertices[] = {
-		// positions          // normals           // texture coords
-		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 0.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  1.0f, 1.0f,
-		-0.5f,  0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 1.0f,
-		-0.5f, -0.5f, -0.5f,  0.0f,  0.0f, -1.0f,  0.0f, 0.0f,
-
-		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 0.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 0.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 1.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   1.0f, 1.0f,
-		-0.5f,  0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 1.0f,
-		-0.5f, -0.5f,  0.5f,  0.0f,  0.0f, 1.0f,   0.0f, 0.0f,
-
-		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
-		-0.5f,  0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
-		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-		-0.5f, -0.5f, -0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-		-0.5f, -0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
-		-0.5f,  0.5f,  0.5f, -1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
-
-		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
-		 0.5f,  0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 1.0f,
-		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-		 0.5f, -0.5f, -0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 1.0f,
-		 0.5f, -0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  0.0f, 0.0f,
-		 0.5f,  0.5f,  0.5f,  1.0f,  0.0f,  0.0f,  1.0f, 0.0f,
-
-		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
-		 0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 1.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
-		 0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  1.0f, 0.0f,
-		-0.5f, -0.5f,  0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 0.0f,
-		-0.5f, -0.5f, -0.5f,  0.0f, -1.0f,  0.0f,  0.0f, 1.0f,
-
-		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f,
-		 0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 1.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
-		 0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  1.0f, 0.0f,
-		-0.5f,  0.5f,  0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 0.0f,
-		-0.5f,  0.5f, -0.5f,  0.0f,  1.0f,  0.0f,  0.0f, 1.0f
-	};
-	// Positions all containers
-	glm::vec3 cubePositions[] = {
-		glm::vec3(0.0f,  0.0f,  0.0f),
-		glm::vec3(2.0f,  5.0f, -15.0f),
-		glm::vec3(-1.5f, -2.2f, -2.5f),
-		glm::vec3(-3.8f, -2.0f, -12.3f),
-		glm::vec3(2.4f, -0.4f, -3.5f),
-		glm::vec3(-1.7f,  3.0f, -7.5f),
-		glm::vec3(1.3f, -2.0f, -2.5f),
-		glm::vec3(1.5f,  2.0f, -2.5f),
-		glm::vec3(1.5f,  0.2f, -1.5f),
-		glm::vec3(-1.3f,  1.0f, -1.5f)
-	};
-	// Positions of the point lights
-	glm::vec3 pointLightPositions[] = {
-		glm::vec3(0.7f,  0.2f,  2.0f),
-		glm::vec3(2.3f, -3.3f, -4.0f),
-		glm::vec3(-4.0f,  2.0f, -12.0f),
-		glm::vec3(0.0f,  0.0f, -3.0f)
-	};
-	// 物体
-	unsigned int vao_cube;
-	glGenVertexArrays(1, &vao_cube);
-	glBindVertexArray(vao_cube);
-	unsigned int vbo;
-	glGenBuffers(1, &vbo);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), 0);
-	glEnableVertexAttribArray(1);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(3 * sizeof(GLfloat)));
-	glEnableVertexAttribArray(2);
-	glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)(6 * sizeof(GLfloat)));
-	glBindVertexArray(0);
-	// 发光物
-	GLuint vao_light;
-	glGenVertexArrays(1, &vao_light);
-	glBindVertexArray(vao_light);
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
-	glEnableVertexAttribArray(0);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 8 * sizeof(GLfloat), (GLvoid*)0);
-	glBindVertexArray(0);
-
 	std::string filepath = "res/shader/basic.shader";
-	std::string lightshaderpath = "res/shader/light.shader";
 	ShaderProgramSource cubesource = ParseShader(filepath);
-	ShaderProgramSource lightsource = ParseShader(lightshaderpath);
 	std::cout << "VertexSource" << std::endl;
 	std::cout << cubesource.VertexSource << std::endl;
 	std::cout << "FragmentSource" << std::endl;
 	std::cout << cubesource.FragmentSource << std::endl;
-	std::cout << "VertexSource" << std::endl;
-	std::cout << lightsource.VertexSource << std::endl;
-	std::cout << "FragmentSource" << std::endl;
-	std::cout << lightsource.FragmentSource << std::endl;
 	// 物体shader程序对象
-	unsigned int shader_cube = CreateShader(cubesource.VertexSource, cubesource.FragmentSource);
-	// 灯shader程序对象
-	unsigned int shader_light = CreateShader(lightsource.VertexSource, lightsource.FragmentSource);
-
-	int texture_width = 0, texture_height = 0, channels_in_file = 0;
-	unsigned char* image = stbi_load("res/textures/container2.png", &texture_width, &texture_height, &channels_in_file, 3);
-	GLuint diffuseMap, specularMap;
-	glGenTextures(1, &diffuseMap);
-	glBindTexture(GL_TEXTURE_2D, diffuseMap);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-	glGenerateMipmap(GL_TEXTURE_2D);
-	stbi_image_free(image);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
-	glBindTexture(GL_TEXTURE_2D, 0);
-	image = stbi_load("res/textures/container2_specular.png", &texture_width, &texture_height, &channels_in_file, 3);
-	glGenTextures(1, &specularMap);
-	glBindTexture(GL_TEXTURE_2D, specularMap);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, texture_width, texture_height, 0, GL_RGB, GL_UNSIGNED_BYTE, image);
-	glGenerateMipmap(GL_TEXTURE_2D);
-	stbi_image_free(image);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST_MIPMAP_NEAREST);
-	glBindTexture(GL_TEXTURE_2D, 0);
+	unsigned int shader = CreateShader(cubesource.VertexSource, cubesource.FragmentSource);
+	// Load models
+	Model ourModel((GLchar*)"res/Nanosuit/nanosuit.obj");
 
 	/* Loop until the user closes the window */
 	while (!glfwWindowShouldClose(window))
@@ -232,123 +114,25 @@ int main(void)
 		glClear(GL_COLOR_BUFFER_BIT);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);// 清理深度缓冲
 		do_movement();
-		glUseProgram(shader_cube);
-		//////使用物体的着色器程序对象///////
-		/****             设置物体的材质属性                ***/
-		glUniform1i(glGetUniformLocation(shader_cube, "material.diffuse"), 0);
-		glUniform1i(glGetUniformLocation(shader_cube, "material.specular"), 1);
-		glUniform1f(glGetUniformLocation(shader_cube, "material.shininess"), 64.0f);
-		/****             设置光的属性                      ***/
-		GLint viewPosLoc = glGetUniformLocation(shader_cube, "viewPos");
-		glUniform3f(viewPosLoc, camera.Position.x, camera.Position.y, camera.Position.z);
-		// Directional light
-		glUniform3f(glGetUniformLocation(shader_cube, "dirLight.direction"), -0.2f, -1.0f, -0.3f);
-		glUniform3f(glGetUniformLocation(shader_cube, "dirLight.ambient"), 0.05f, 0.05f, 0.05f);
-		glUniform3f(glGetUniformLocation(shader_cube, "dirLight.diffuse"), 0.4f, 0.4f, 0.4f);
-		glUniform3f(glGetUniformLocation(shader_cube, "dirLight.specular"), 0.5f, 0.5f, 0.5f);
-		// Point light 1
-		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[0].position"), pointLightPositions[0].x, pointLightPositions[0].y, pointLightPositions[0].z);
-		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[0].ambient"), 0.05f, 0.05f, 0.05f);
-		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[0].diffuse"), 0.8f, 0.8f, 0.8f);
-		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[0].specular"), 1.0f, 1.0f, 1.0f);
-		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[0].constant"), 1.0f);
-		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[0].linear"), 0.09);
-		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[0].quadratic"), 0.032);
-		// Point light 2
-		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[1].position"), pointLightPositions[1].x, pointLightPositions[1].y, pointLightPositions[1].z);
-		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[1].ambient"), 0.05f, 0.05f, 0.05f);
-		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[1].diffuse"), 0.8f, 0.8f, 0.8f);
-		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[1].specular"), 1.0f, 1.0f, 1.0f);
-		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[1].constant"), 1.0f);
-		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[1].linear"), 0.09);
-		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[1].quadratic"), 0.032);
-		// Point light 3
-		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[2].position"), pointLightPositions[2].x, pointLightPositions[2].y, pointLightPositions[2].z);
-		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[2].ambient"), 0.05f, 0.05f, 0.05f);
-		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[2].diffuse"), 0.8f, 0.8f, 0.8f);
-		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[2].specular"), 1.0f, 1.0f, 1.0f);
-		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[2].constant"), 1.0f);
-		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[2].linear"), 0.09);
-		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[2].quadratic"), 0.032);
-		// Point light 4
-		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[3].position"), pointLightPositions[3].x, pointLightPositions[3].y, pointLightPositions[3].z);
-		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[3].ambient"), 0.05f, 0.05f, 0.05f);
-		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[3].diffuse"), 0.8f, 0.8f, 0.8f);
-		glUniform3f(glGetUniformLocation(shader_cube, "pointLights[3].specular"), 1.0f, 1.0f, 1.0f);
-		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[3].constant"), 1.0f);
-		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[3].linear"), 0.09);
-		glUniform1f(glGetUniformLocation(shader_cube, "pointLights[3].quadratic"), 0.032);
-		// SpotLight
-		/*glUniform3f(glGetUniformLocation(shader_cube, "spotLight.position"), camera.Position.x, camera.Position.y, camera.Position.z);
-		glUniform3f(glGetUniformLocation(shader_cube, "spotLight.direction"), camera.Front.x, camera.Front.y, camera.Front.z);
-		glUniform3f(glGetUniformLocation(shader_cube, "spotLight.ambient"), 0.0f, 0.0f, 0.0f);
-		glUniform3f(glGetUniformLocation(shader_cube, "spotLight.diffuse"), 1.0f, 1.0f, 1.0f);
-		glUniform3f(glGetUniformLocation(shader_cube, "spotLight.specular"), 1.0f, 1.0f, 1.0f);
-		glUniform1f(glGetUniformLocation(shader_cube, "spotLight.constant"), 1.0f);
-		glUniform1f(glGetUniformLocation(shader_cube, "spotLight.linear"), 0.09);
-		glUniform1f(glGetUniformLocation(shader_cube, "spotLight.quadratic"), 0.032);
-		glUniform1f(glGetUniformLocation(shader_cube, "spotLight.cutOff"), glm::cos(glm::radians(12.5f)));
-		glUniform1f(glGetUniformLocation(shader_cube, "spotLight.outerCutOff"), glm::cos(glm::radians(15.0f)));*/
-		glm::mat4 view;
-		glm::mat4 projection;
-		glm::mat4 model;
-		view = view = camera.GetViewMatrix();
-		projection = glm::perspective(camera.Zoom, (float)width / (float)height, 0.1f, 100.0f);
-		GLint modelLoc = glGetUniformLocation(shader_cube, "model");
-		GLint viewLoc = glGetUniformLocation(shader_cube, "view");
-		GLint projLoc = glGetUniformLocation(shader_cube, "projection");
-		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-		// Bind diffuse map
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, diffuseMap);
-		glUniform1i(glGetUniformLocation(shader_cube, "material.diffuse"), 0);
-		// Bind specular map
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, specularMap);
-		glUniform1i(glGetUniformLocation(shader_cube, "material.specular"), 1);
-		// 使用物体的vao
-		glBindVertexArray(vao_cube);
-		for (GLuint i = 0; i < 10; i++)
-		{
-			model = glm::mat4();
-			model = glm::translate(model, cubePositions[i]);
-			GLfloat angle = 20.0f * i;
-			model = glm::rotate(model, angle, glm::vec3(1.0f, 0.3f, 0.5f));
-			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-			glDrawArrays(GL_TRIANGLES, 0, 36);
-		}
-		glBindVertexArray(0);
+		glUseProgram(shader);
+		// Transformation matrices
+		glm::mat4 projection = glm::perspective(camera.Zoom, (float)width / (float)height, 0.1f, 100.0f);
+		glm::mat4 view = camera.GetViewMatrix();
+		glUniformMatrix4fv(glGetUniformLocation(shader, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+		glUniformMatrix4fv(glGetUniformLocation(shader, "view"), 1, GL_FALSE, glm::value_ptr(view));
 
-		////////////使用灯的着色器程序对象///////////////////
-		glUseProgram(shader_light);
-		modelLoc = glGetUniformLocation(shader_light, "model");
-		viewLoc = glGetUniformLocation(shader_light, "view");
-		projLoc = glGetUniformLocation(shader_light, "projection");
-		glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-		glUniformMatrix4fv(projLoc, 1, GL_FALSE, glm::value_ptr(projection));
-		// 使用灯的vao
-		glBindVertexArray(vao_light);
-		for (GLuint i = 0; i < 4; i++)
-		{
-			model = glm::mat4();
-			model = glm::translate(model, pointLightPositions[i]);
-			model = glm::scale(model, glm::vec3(0.2f)); // Make it a smaller cube
-			glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-			glDrawArrays(GL_TRIANGLES, 0, 36);
-		}
-		glBindVertexArray(0);
+		// Draw the loaded model
+		glm::mat4 model;
+		model = glm::translate(model, glm::vec3(0.0f, -1.75f, 0.0f)); // Translate it down a bit so it's at the center of the scene
+		model = glm::scale(model, glm::vec3(0.2f, 0.2f, 0.2f));	// It's a bit too big for our scene, so scale it down
+		glUniformMatrix4fv(glGetUniformLocation(shader, "model"), 1, GL_FALSE, glm::value_ptr(model));
+		ourModel.Draw(shader);
+
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 	}
 	/* 删除创建的 缓冲对象 和 着色器程序对象 */
-	glDeleteProgram(shader_cube);
-	glDeleteProgram(shader_light);
-
-	glDeleteVertexArrays(1, &vao_cube);
-	glDeleteVertexArrays(1, &vao_light);
-
-	glDeleteBuffers(1, &vbo);
+	glDeleteProgram(shader);
 	glfwTerminate();
 	return 0;
 }
